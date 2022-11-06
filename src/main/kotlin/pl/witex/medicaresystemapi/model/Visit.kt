@@ -1,5 +1,7 @@
-package pl.witex.medicaresystemapi.model.dto
+package pl.witex.medicaresystemapi.model
 
+import pl.witex.medicaresystemapi.model.doctor.Doctor
+import pl.witex.medicaresystemapi.model.patient.Patient
 import java.time.LocalDateTime
 
 data class Visit(

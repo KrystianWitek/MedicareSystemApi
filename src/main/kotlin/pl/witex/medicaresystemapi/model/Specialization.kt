@@ -7,4 +7,4 @@ enum class Specialization {
     Internal,
     ANESTHESIOLOGY
 }
-// itd ;) 
+// itd ;)

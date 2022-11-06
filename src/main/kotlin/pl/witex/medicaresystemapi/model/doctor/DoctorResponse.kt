@@ -1,8 +1,7 @@
-package pl.witex.medicaresystemapi.model.dto.response
+package pl.witex.medicaresystemapi.model.doctor
 
 import pl.witex.medicaresystemapi.model.Specialization
-import pl.witex.medicaresystemapi.model.dto.Address
-import pl.witex.medicaresystemapi.model.dto.PersonName
+import pl.witex.medicaresystemapi.model.PersonName
 import java.util.UUID
 
 data class DoctorResponse(

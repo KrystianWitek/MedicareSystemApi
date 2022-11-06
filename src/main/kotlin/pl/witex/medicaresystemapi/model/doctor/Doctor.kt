@@ -1,7 +1,7 @@
-package pl.witex.medicaresystemapi.model.dto
+package pl.witex.medicaresystemapi.model.doctor
 
+import pl.witex.medicaresystemapi.model.PersonName
 import pl.witex.medicaresystemapi.model.Specialization
-import pl.witex.medicaresystemapi.model.dto.PersonName
 
 data class Doctor(
     val name: PersonName,

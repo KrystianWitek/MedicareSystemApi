@@ -1,4 +1,4 @@
-package pl.witex.medicaresystemapi.model.dto
+package pl.witex.medicaresystemapi.model
 
 data class PersonName(
     val firstname: String,
