@@ -1,30 +1,34 @@
 package pl.witex.medicaresystemapi.controller
 
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
+import pl.witex.medicaresystemapi.model.doctor.Doctor
+import pl.witex.medicaresystemapi.service.DoctorService
+import java.util.*
 
 @RestController
 @RequestMapping("/doctors")
-class DoctorController {
-
+class DoctorController(
+    private val service: DoctorService
+) {
     @GetMapping
-    fun getAll() = "all"
+    fun getAll(): List<Doctor> = service.getAll()
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: UUID) = "one"
+    fun getById(@PathVariable id: UUID): Doctor = service.getById(id)
 
     @PostMapping
-    fun add() = "addOne"
+    @ResponseStatus(HttpStatus.CREATED)
+    fun add(@RequestBody patient: Doctor): UUID = service.add(patient)
 
-    @PutMapping
-    fun update() = "updateOne"
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    fun update(@PathVariable id: UUID, @RequestBody patient: Doctor) {
+        service.update(id, patient)
+    }
 
     @DeleteMapping("/{id}")
-    fun deleteById(@PathVariable id: UUID) = "deleteOne"
+    fun deleteById(@PathVariable id: UUID) {
+        service.delete(id)
+    }
 }
