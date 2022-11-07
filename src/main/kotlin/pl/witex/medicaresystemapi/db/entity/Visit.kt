@@ -5,6 +5,7 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
 import javax.persistence.OneToOne
+import pl.witex.medicaresystemapi.model.Visit as VisitDTO
 
 @Entity
 class Visit : ParentEntity() {
@@ -26,3 +27,12 @@ class Visit : ParentEntity() {
     @JoinColumn(name = "patient_id", referencedColumnName = "id", nullable = false)
     lateinit var patient: Patient
 }
+
+fun Visit.toDto() =
+    VisitDTO(
+        date = date,
+        hour = hour ?: error("Visit hour have to be set, before visit creation."),
+        place = place,
+        doctorId = doctor.id,
+        patientId = patient.id
+    )
