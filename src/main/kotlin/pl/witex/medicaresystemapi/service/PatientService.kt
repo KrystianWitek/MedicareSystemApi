@@ -1,5 +1,6 @@
 package pl.witex.medicaresystemapi.service
 
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import pl.witex.medicaresystemapi.db.entity.toDto
@@ -12,7 +13,10 @@ import java.util.*
 class PatientService(
     private val repository: PatientRepository
 ) {
-    fun getAll(): List<Patient> = repository.findAll().map { it.toDto() }
+    fun getAll(page: Int, size: Int): List<Patient> =
+        repository.findAll(
+            PageRequest.of(page, size)
+        ).content.map { it.toDto() }
 
     fun getById(id: UUID): Patient =
         repository.findByIdOrNull(id)?.toDto()

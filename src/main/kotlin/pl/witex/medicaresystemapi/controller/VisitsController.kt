@@ -13,7 +13,11 @@ class VisitsController(
     private val service: VisitService
 ) {
     @GetMapping("/patient/{id}")
-    fun getAllByPatientId(@PathVariable id: UUID): List<Visit> = service.getByPatientId(id)
+    fun getAllByPatientId(
+        @PathVariable id: UUID,
+        @RequestParam page: Int,
+        @RequestParam size: Int
+    ): List<Visit> = service.getByPatientId(id, page, size)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

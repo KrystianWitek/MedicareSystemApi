@@ -12,7 +12,10 @@ class DoctorController(
     private val service: DoctorService
 ) {
     @GetMapping
-    fun getAll(): List<Doctor> = service.getAll()
+    fun getAll(
+        @RequestParam page: Int,
+        @RequestParam size: Int
+    ): List<Doctor> = service.getAll(page, size)
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: UUID): Doctor = service.getById(id)
