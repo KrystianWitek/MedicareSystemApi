@@ -1,4 +1,4 @@
-package pl.witex.medicaresystemapi.model
+package pl.witex.medicaresystemapi.model.visit
 
 import java.time.LocalDateTime
 import java.util.*
