@@ -10,5 +10,5 @@ open class ParentEntity {
 
     @Id
     @Column(unique = true, updatable = false, insertable = false, columnDefinition = "uuid")
-    open val id: UUID = UUID.randomUUID()
+    open var id: UUID = UUID.randomUUID()
 }

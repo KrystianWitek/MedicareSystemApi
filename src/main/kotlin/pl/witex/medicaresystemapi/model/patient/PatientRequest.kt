@@ -3,12 +3,12 @@ package pl.witex.medicaresystemapi.model.patient
 import pl.witex.medicaresystemapi.model.PersonName
 import pl.witex.medicaresystemapi.db.entity.Patient as PatientEntity
 
-data class Patient(
+data class PatientRequest(
     val name: PersonName,
-    val address: String // TODO jak wystarczy czasu to pobawić się w użycie Address
+    val address: String
 )
 
-fun Patient.toEntity() =
+fun PatientRequest.toEntity() =
     PatientEntity().also {
         it.address = address
         it.firstname = name.firstname

@@ -1,11 +1,11 @@
 package pl.witex.medicaresystemapi.db.entity
 
+import pl.witex.medicaresystemapi.model.visit.VisitResponse
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
 import javax.persistence.OneToOne
-import pl.witex.medicaresystemapi.model.Visit as VisitDTO
 
 @Entity
 class Visit : ParentEntity() {
@@ -29,7 +29,8 @@ class Visit : ParentEntity() {
 }
 
 fun Visit.toDto() =
-    VisitDTO(
+    VisitResponse(
+        id = id,
         date = date,
         hour = hour ?: error("Visit hour have to be set, before visit creation."),
         place = place,

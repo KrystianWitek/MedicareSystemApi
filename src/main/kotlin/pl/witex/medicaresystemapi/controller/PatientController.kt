@@ -1,8 +1,10 @@
 package pl.witex.medicaresystemapi.controller
 
+import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import pl.witex.medicaresystemapi.model.patient.Patient
+import pl.witex.medicaresystemapi.model.patient.PatientRequest
+import pl.witex.medicaresystemapi.model.patient.PatientResponse
 import pl.witex.medicaresystemapi.service.PatientService
 import java.util.*
 
@@ -15,18 +17,18 @@ class PatientController(
     fun getAll(
         @RequestParam page: Int,
         @RequestParam size: Int
-    ): List<Patient> = service.getAll(page, size)
+    ): Page<PatientResponse> = service.getAll(page, size)
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: UUID): Patient = service.getById(id)
+    fun getById(@PathVariable id: UUID): PatientResponse = service.getById(id)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun add(@RequestBody patient: Patient): UUID = service.add(patient)
+    fun add(@RequestBody patient: PatientRequest): UUID = service.add(patient)
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    fun update(@PathVariable id: UUID, @RequestBody patient: Patient) {
+    fun update(@PathVariable id: UUID, @RequestBody patient: PatientRequest) {
         service.update(id, patient)
     }
 

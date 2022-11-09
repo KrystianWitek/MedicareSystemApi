@@ -1,11 +1,13 @@
 package pl.witex.medicaresystemapi.service
 
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import pl.witex.medicaresystemapi.db.entity.toDto
 import pl.witex.medicaresystemapi.db.repository.DoctorRepository
-import pl.witex.medicaresystemapi.model.doctor.Doctor
+import pl.witex.medicaresystemapi.model.doctor.DoctorRequest
+import pl.witex.medicaresystemapi.model.doctor.DoctorResponse
 import pl.witex.medicaresystemapi.model.doctor.toEntity
 import java.util.*
 
@@ -13,19 +15,19 @@ import java.util.*
 class DoctorService(
     private val repository: DoctorRepository
 ) {
-    fun getAll(page: Int, size: Int): List<Doctor> =
+    fun getAll(page: Int, size: Int): Page<DoctorResponse> =
         repository.findAll(
             PageRequest.of(page, size)
-        ).content.map { it.toDto() }
+        ).map { it.toDto() }
 
-    fun getById(id: UUID): Doctor =
+    fun getById(id: UUID): DoctorResponse =
         repository.findByIdOrNull(id)?.toDto()
             ?: throw NoSuchElementException("Missing doctor with id: $id")
 
-    fun add(Doctor: Doctor): UUID =
+    fun add(Doctor: DoctorRequest): UUID =
         repository.save(Doctor.toEntity()).id
 
-    fun update(id: UUID, doctor: Doctor) {
+    fun update(id: UUID, doctor: DoctorRequest) {
         repository.findByIdOrNull(id)?.also {
             it.firstname = doctor.name.firstname
             it.surname = doctor.name.surname

@@ -1,8 +1,10 @@
 package pl.witex.medicaresystemapi.controller
 
+import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import pl.witex.medicaresystemapi.model.visit.Visit
+import pl.witex.medicaresystemapi.model.visit.VisitRequest
+import pl.witex.medicaresystemapi.model.visit.VisitResponse
 import pl.witex.medicaresystemapi.model.visit.VisitUpdate
 import pl.witex.medicaresystemapi.service.VisitService
 import java.util.*
@@ -17,11 +19,11 @@ class VisitsController(
         @PathVariable id: UUID,
         @RequestParam page: Int,
         @RequestParam size: Int
-    ): List<Visit> = service.getByPatientId(id, page, size)
+    ): Page<VisitResponse> = service.getByPatientId(id, page, size)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody visit: Visit) {
+    fun create(@RequestBody visit: VisitRequest) {
         service.create(visit)
     }
 

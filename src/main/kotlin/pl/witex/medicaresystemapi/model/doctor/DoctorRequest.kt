@@ -4,12 +4,12 @@ import pl.witex.medicaresystemapi.model.PersonName
 import pl.witex.medicaresystemapi.model.Specialization
 import pl.witex.medicaresystemapi.db.entity.Doctor as DoctorEntity
 
-data class Doctor(
+data class DoctorRequest(
     val name: PersonName,
     val specialization: Specialization
 )
 
-fun Doctor.toEntity() =
+fun DoctorRequest.toEntity() =
     DoctorEntity().also {
         it.firstname = name.firstname
         it.surname = name.surname

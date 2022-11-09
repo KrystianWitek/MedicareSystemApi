@@ -1,12 +1,13 @@
 package pl.witex.medicaresystemapi.model.visit
 
+import pl.witex.medicaresystemapi.db.entity.Doctor
+import pl.witex.medicaresystemapi.db.entity.Patient
 import java.time.LocalDateTime
 import java.util.*
-import pl.witex.medicaresystemapi.db.entity.Doctor as DoctorEntity
-import pl.witex.medicaresystemapi.db.entity.Patient as PatientEntity
 import pl.witex.medicaresystemapi.db.entity.Visit as VisitEntity
 
-data class Visit(
+data class VisitResponse(
+    val id: UUID,
     val date: LocalDateTime,
     val hour: Int,
     val place: String,
@@ -14,7 +15,7 @@ data class Visit(
     val patientId: UUID
 )
 
-fun Visit.toEntity(doctor: DoctorEntity, patient: PatientEntity) =
+fun VisitResponse.toEntity(doctor: Doctor, patient: Patient) =
     VisitEntity().also {
         it.date = date
         it.hour = hour
