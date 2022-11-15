@@ -32,7 +32,7 @@ dependencies {
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
     testImplementation("io.kotest:kotest-framework-engine-jvm:$kotestVersion")
-    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
 }
 
 tasks.withType<KotlinCompile> {
